@@ -1,6 +1,7 @@
 package edu.kis.powp.jobs2d.drivers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import edu.kis.powp.jobs2d.Job2dDriver;
 
@@ -31,6 +32,6 @@ public class DriverComposite implements Job2dDriver {
 
     @Override
     public String toString() {
-        return String.join(" + ", drivers.stream().map(driver -> driver.toString()).toList());
+        return String.join(" + ", drivers.stream().map(driver -> driver.toString()).collect(Collectors.toList()));
     }
 }
