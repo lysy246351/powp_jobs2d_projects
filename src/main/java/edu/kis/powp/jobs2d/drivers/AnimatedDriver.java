@@ -9,7 +9,7 @@ public class AnimatedDriver implements Job2dDriver {
     private static final int DEFAULT_DELAY_MS = 100;
     
     private final Job2dDriver targetDriver;
-    private final int delayMs;
+    private volatile int delayMs;
     private final BlockingQueue<Runnable> operationQueue;
     private final Thread executionThread;
     private volatile boolean running = true;
@@ -58,9 +58,20 @@ public class AnimatedDriver implements Job2dDriver {
         }
     }
 
+    public void setSpeedFast() {
+        this.delayMs = 50;
+    }
+
+    public void setSpeedMedium() {
+        this.delayMs = 200;
+    }
+
+    public void setSpeedSlow() {
+        this.delayMs = 400;
+    }
+
     @Override
     public String toString() {
         return "Animated " + targetDriver.toString();
     }
 }
-
