@@ -13,16 +13,20 @@ public class RotationDriverDecorator implements Job2dDriver {
 
     @Override
     public void setPosition(int x, int y) {
-        int newX = (int) (x * Math.cos(angle) - y * Math.sin(angle));
-        int newY = (int) (x * Math.sin(angle) + y * Math.cos(angle));
-        this.driver.setPosition(newX, newY);
+        int[] coords = calculateCoordinates(x, y);
+        this.driver.setPosition(coords[0], coords[1]);
     }
 
     @Override
     public void operateTo(int x, int y) {
+        int[] coords = calculateCoordinates(x, y);
+        this.driver.operateTo(coords[0], coords[1]);
+    }
+
+    private int[] calculateCoordinates(int x, int y) {
         int newX = (int) (x * Math.cos(angle) - y * Math.sin(angle));
         int newY = (int) (x * Math.sin(angle) + y * Math.cos(angle));
-        this.driver.operateTo(newX, newY);
+        return new int[]{newX, newY};
     }
 
     @Override
