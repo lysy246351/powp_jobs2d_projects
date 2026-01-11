@@ -14,7 +14,6 @@ public class DriverCounterVisitor implements DriverVisitor {
     private int animatedDriverDecoratorCount = 0;
     private int loggerDriverCount = 0;
     private int lineDriverAdapterCount = 0;
-    private int driverCompositeCount = 0;
     
     private DriverCounterVisitor() {}
 
