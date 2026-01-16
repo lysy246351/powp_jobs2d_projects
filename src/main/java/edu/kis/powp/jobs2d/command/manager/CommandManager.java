@@ -4,6 +4,8 @@ import java.util.List;
 
 import edu.kis.powp.jobs2d.command.CompoundCommand;
 import edu.kis.powp.jobs2d.command.DriverCommand;
+import edu.kis.powp.jobs2d.command.importer.CommandImportParser;
+import edu.kis.powp.jobs2d.command.importer.CommandImportResult;
 import edu.kis.powp.jobs2d.visitor.CommandCounterVisitor;
 import edu.kis.powp.observer.Publisher;
 
@@ -34,6 +36,11 @@ public class CommandManager {
     public synchronized void setCurrentCommand(List<DriverCommand> commandList, String name) {
         CompoundCommand compoundCommand = CompoundCommand.fromListOfCommands(commandList, name);
         setCurrentCommand(compoundCommand);
+    }
+
+    public synchronized void importCurrentCommandFromText(String text, CommandImportParser parser) {
+        CommandImportResult result = parser.parse(text);
+        setCurrentCommand(result.getCommands(), result.getName());
     }
 
     /**
